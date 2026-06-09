@@ -1,0 +1,15 @@
+OrderCalendar = 
+VAR Mindate=Year(MIN(FactTable[OrderDate]))
+VAR Maxdate=Year(MAX(FactTable[OrderDate]))
+RETURN
+ADDCOLUMNS (
+    FILTER(
+    CALENDARAUTO(),
+    Year([Date])>=Mindate && Year([Date])<=Maxdate),
+        "Year", YEAR([Date]),
+        "Month", FORMAT([Date], "mmm"),
+        "MonthNum", MONTH([Date]),
+        "Weekdays", FORMAT([Date], "ddd"),
+        "WeekNum", WEEKDAY([Date]),
+        "qrt", FORMAT([Date], "\QQ")
+)
